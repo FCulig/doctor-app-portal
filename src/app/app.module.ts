@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { JwtHelperService, JwtModuleOptions, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -12,9 +13,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { AlertsSectionComponent } from './sections/alerts-section/alerts-section.component';
 
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
+import { HttpClient, HttpClientModule, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { from } from 'rxjs';
+import { AlertComponent } from './shared/alert/alert.component';
+import { HttpTransportInterceptor } from './core/interceptors/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,17 +30,36 @@ import { LoginComponent } from './login/login.component';
     ProfileComponent,
     NavbarComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    AlertsSectionComponent,
+    AlertComponent,
+    /*ButtonsSectionComponent,
+    InputsSectionComponent,
+    CrsSectionComponent,
+    NavigationSectionComponent,
+    TabsSectionComponent,
+    TypographySectionComponent,
+    AngularSectionComponent,
+    NucleoSectionComponent,
+    VersionsSectionComponent,
+    NgbdModalComponent,
+    NgbdModalContent*/
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     NgbModule,
     FormsModule,
     RouterModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HomeModule
   ],
-  providers: [],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTransportInterceptor, multi: true },
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

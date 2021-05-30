@@ -28,7 +28,6 @@ import { NgbdModalContent } from './modal/modal.component';
     CrsSectionComponent,
     NavigationSectionComponent,
     TabsSectionComponent,
-    AlertsSectionComponent,
     TypographySectionComponent,
     AngularSectionComponent,
     NucleoSectionComponent,
@@ -45,6 +44,6 @@ import { NgbdModalContent } from './modal/modal.component';
     NouisliderModule,
     JwBootstrapSwitchNg2Module
   ],
-  exports:[ SectionsComponent ]
+  exports: [SectionsComponent]
 })
 export class SectionsModule { }
