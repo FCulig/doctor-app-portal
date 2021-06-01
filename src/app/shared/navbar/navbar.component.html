@@ -1,114 +1,231 @@
-<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
-  <div class="container">
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
-      <img src="./assets/img/brand/argon-white.png">
-    </a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-            <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png">
-            </a>
-          </div>
-          <div class="col-6 collapse-close">
-            <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
-                  [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
-              <span></span>
-              <span></span>
-            </button>
+<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header d-flex align-items-center">
+      <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+        <img src="../../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      </a>
+      <div class="ml-auto">
+        <!-- Sidenav toggler -->
+        <div id="nav-toggle" [class.active]="isExpanded" class="sidenav-toggler d-none d-xl-block" [attr.data-action]="isExpanded ? 'sidenav-pin' : 'sidenav-unpin'"
+          data-target="#sidenav-main" (click)="expansionClick()">
+          <div class="sidenav-toggler-inner">
+            <i class="sidenav-toggler-line"></i>
+            <i class="sidenav-toggler-line"></i>
+            <i class="sidenav-toggler-line"></i>
           </div>
         </div>
       </div>
-      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-        <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">Components</span>
-          </a>
-          <div class="dropdown-menu-xl dropdown-menu" >
-            <div class="dropdown-menu-inner">
-              <a routerLinkActive="active" [routerLink]="['documentation/tutorial']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                  <i class="ni ni-spaceship"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Getting started</h6>
-                  <p class="description d-none d-md-inline-block mb-0">Learn how to use Argon compiling Scss, change brand colors and more.</p>
-                </div>
-              </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/colors']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                  <i class="ni ni-palette"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Foundation</h6>
-                  <p class="description d-none d-md-inline-block mb-0">Learn more about colors, typography, icons and the grid system we used for Argon.</p>
-                </div>
-              </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/alerts']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                  <i class="ni ni-ui-04"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1">Components</h5>
-                  <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
-                </div>
-              </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="#navbar-dashboards" data-toggle="collapse" role="button"
+              aria-expanded="true" aria-controls="navbar-dashboards">
+              <i class="ni ni-shop text-primary"></i>
+              <span class="nav-link-text">Dashboards</span>
+            </a>
+            <div class="collapse show" id="navbar-dashboards">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/dashboards/dashboard.html" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/dashboards/alternative.html" class="nav-link">Alternative</a>
+                </li>
+              </ul>
             </div>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">Examples</span>
-          </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/landing']" class="dropdown-item">Landing</a>
-            <a [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
-            <a [routerLink]="['/login']" class="dropdown-item">Login</a>
-            <a [routerLink]="['/register']" class="dropdown-item">Register</a>
-          </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-            <i class="fa fa-facebook-square"></i>
-            <span class="nav-link-inner--text d-lg-none">Facebook</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
-            <i class="fa fa-instagram"></i>
-            <span class="nav-link-inner--text d-lg-none">Instagram</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank" data-toggle="tooltip" title="Follow us on Twitter">
-            <i class="fa fa-twitter-square"></i>
-            <span class="nav-link-inner--text d-lg-none">Twitter</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial/argon-design-system-angular?ref=adsa-navbar" target="_blank" data-toggle="tooltip" title="Star us on Github">
-            <i class="fa fa-github"></i>
-            <span class="nav-link-inner--text d-lg-none">Github</span>
-          </a>
-        </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4">
-          <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-navbar" target="_blank" class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-cloud-download mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text">Download</span>
-          </a>
-        </li>
-      </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false"
+              aria-controls="navbar-examples">
+              <i class="ni ni-ungroup text-orange"></i>
+              <span class="nav-link-text">Examples</span>
+            </a>
+            <div class="collapse" id="navbar-examples">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/examples/pricing.html" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/examples/login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/examples/register.html" class="nav-link">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/examples/lock.html" class="nav-link">Lock</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/examples/timeline.html" class="nav-link">Timeline</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/examples/profile.html" class="nav-link">Profile</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false"
+              aria-controls="navbar-components">
+              <i class="ni ni-ui-04 text-info"></i>
+              <span class="nav-link-text">Components</span>
+            </a>
+            <div class="collapse" id="navbar-components">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/components/buttons.html" class="nav-link">Buttons</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/components/cards.html" class="nav-link">Cards</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/components/grid.html" class="nav-link">Grid</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/components/notifications.html" class="nav-link">Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/components/icons.html" class="nav-link">Icons</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/components/typography.html" class="nav-link">Typography</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#navbar-multilevel" class="nav-link" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="navbar-multilevel">Multi level</a>
+                  <div class="collapse show" id="navbar-multilevel" style="">
+                    <ul class="nav nav-sm flex-column">
+                      <li class="nav-item">
+                        <a href="#!" class="nav-link ">Third level menu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#!" class="nav-link ">Just another link</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#!" class="nav-link ">One last link</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false"
+              aria-controls="navbar-forms">
+              <i class="ni ni-single-copy-04 text-pink"></i>
+              <span class="nav-link-text">Forms</span>
+            </a>
+            <div class="collapse" id="navbar-forms">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/forms/elements.html" class="nav-link">Elements</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/forms/components.html" class="nav-link">Components</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/forms/validation.html" class="nav-link">Validation</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false"
+              aria-controls="navbar-tables">
+              <i class="ni ni-align-left-2 text-default"></i>
+              <span class="nav-link-text">Tables</span>
+            </a>
+            <div class="collapse" id="navbar-tables">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/tables/tables.html" class="nav-link">Tables</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/tables/sortable.html" class="nav-link">Sortable</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/tables/datatables.html" class="nav-link">Datatables</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button" aria-expanded="false"
+              aria-controls="navbar-maps">
+              <i class="ni ni-map-big text-primary"></i>
+              <span class="nav-link-text">Maps</span>
+            </a>
+            <div class="collapse" id="navbar-maps">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a href="../../pages/maps/google.html" class="nav-link">Google</a>
+                </li>
+                <li class="nav-item">
+                  <a href="../../pages/maps/vector.html" class="nav-link">Vector</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/widgets.html">
+              <i class="ni ni-archive-2 text-green"></i>
+              <span class="nav-link-text">Widgets</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/charts.html">
+              <i class="ni ni-chart-pie-35 text-info"></i>
+              <span class="nav-link-text">Charts</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/calendar.html">
+              <i class="ni ni-calendar-grid-58 text-red"></i>
+              <span class="nav-link-text">Calendar</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html"
+              target="_blank">
+              <i class="ni ni-spaceship"></i>
+              <span class="nav-link-text">Getting started</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html"
+              target="_blank">
+              <i class="ni ni-palette"></i>
+              <span class="nav-link-text">Foundation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html"
+              target="_blank">
+              <i class="ni ni-ui-04"></i>
+              <span class="nav-link-text">Components</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html"
+              target="_blank">
+              <i class="ni ni-chart-pie-35"></i>
+              <span class="nav-link-text">Plugins</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

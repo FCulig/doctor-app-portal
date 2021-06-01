@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { SidebarService } from 'src/app/core/services/sidebar.service';
 
 @Component({
     selector: 'app-navbar',
@@ -8,49 +9,31 @@ import { Location, PopStateEvent } from '@angular/common';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    public isCollapsed = true;
-    private lastPoppedUrl: string;
-    private yScrollStack: number[] = [];
+    public isExpanded = true;
 
-    constructor(public location: Location, private router: Router) {
+    constructor(private sidebarService: SidebarService) {
     }
 
     ngOnInit() {
-      this.router.events.subscribe((event) => {
-        this.isCollapsed = true;
-        if (event instanceof NavigationStart) {
-           if (event.url != this.lastPoppedUrl)
-               this.yScrollStack.push(window.scrollY);
-       } else if (event instanceof NavigationEnd) {
-           if (event.url == this.lastPoppedUrl) {
-               this.lastPoppedUrl = undefined;
-               window.scrollTo(0, this.yScrollStack.pop());
-           } else
-               window.scrollTo(0, 0);
-       }
-     });
-     this.location.subscribe((ev:PopStateEvent) => {
-         this.lastPoppedUrl = ev.url;
-     });
+
     }
 
-    isHome() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
+    // data-action="sidenav-unpin"
+    /*
+     pin
+     $('.sidenav-toggler').addClass('active');
+        $('.sidenav-toggler').data('action', 'sidenav-unpin');
+        $('body').removeClass('g-sidenav-hidden').addClass('g-sidenav-show g-sidenav-pinned');
+        $('body').append('<div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target='+$('#sidenav-main').data('target')+' />');
 
-        if( titlee === '#/home' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    isDocumentation() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if( titlee === '#/documentation' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
+     unpin
+     $('.sidenav-toggler').removeClass('active');
+        $('.sidenav-toggler').data('action', 'sidenav-pin');
+        $('body').removeClass('g-sidenav-pinned').addClass('g-sidenav-hidden');
+        $('body').find('.backdrop').remove();
+    */
+    expansionClick(): void {
+        this.isExpanded = !this.isExpanded;
+        this.sidebarService.click(this.isExpanded);
     }
 }
