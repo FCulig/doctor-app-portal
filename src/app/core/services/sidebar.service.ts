@@ -12,6 +12,7 @@ export class SidebarService {
     constructor() { }
 
     public click(expansion) {
+        console.log(expansion);
         this.sidebarExpansionSubject.next(expansion);
     }
 }

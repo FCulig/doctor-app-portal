@@ -19,7 +19,7 @@ var navbarHeight = 0;
 export class AppComponent implements OnInit {
     private _router: Subscription;
     public isNavVisible: boolean;
-    public isNavExpanded: boolean; //false 
+    public isNavExpanded = true; //false 
 
     constructor(
         private router: Router,
@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
     private subscribeSidebarExpansions(): void {
         this.sidebarService.sidebarExpansion.subscribe(expansion => {
+            console.log(expansion);
             this.isNavExpanded = expansion;
         });
     }
