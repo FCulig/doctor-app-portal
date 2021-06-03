@@ -47,6 +47,12 @@ export class HomeComponent implements OnInit {
         this.authService.logout();
     }
 
+    public updateIssueStatus(issueId: string, isResolved: boolean): void {
+        this.issueService.updateIssue(issueId, { isResolved: isResolved }).subscribe(updatedIssue => {
+            this.issues.find(issue => issue.id === issueId).isResolved = updatedIssue.isResolved;
+        });
+    }
+
     private getAdmins(): void {
         this.userService.findUsers({ role: 'admin' }).subscribe(admins => {
             this.admins = admins;
@@ -55,7 +61,7 @@ export class HomeComponent implements OnInit {
 
     private getIssues(): void {
         this.issueService.getAllIssues().subscribe(issues => {
-            this.issues = issues;
+            this.issues = issues.reverse();
         });
     }
 }

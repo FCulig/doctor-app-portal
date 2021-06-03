@@ -19,4 +19,17 @@ export class IssueMapper {
 
         return issues;
     }
+
+    mapIssueResponseToIssue(issuesResponse): Issue {
+        const userMapper = new UserMapper();
+
+        return {
+            id: issuesResponse.id,
+            type: issuesResponse.type,
+            description: issuesResponse.description,
+            created: issuesResponse.created,
+            isResolved: issuesResponse.isResolved,
+            reporter: userMapper.mapUserResponseToUser(issuesResponse.reporter)
+        };
+    }
 }

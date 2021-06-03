@@ -21,4 +21,9 @@ export class IssueService {
         return this.http.get<Issue[]>(this.baseUrl + ApiPaths.issue)
             .pipe(map(this.issueMapper.mapArrayResponseToIssueArray));
     }
+
+    public updateIssue(issueId: string, issueBody: any): Observable<any> {
+        return this.http.put<Issue>(this.baseUrl + ApiPaths.issue + '/' + issueId, issueBody)
+            .pipe(map(this.issueMapper.mapIssueResponseToIssue));
+    }
 }

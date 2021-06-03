@@ -1,4 +1,8 @@
-/*.main-content {
-    margin-left: 250px !important;
+.scrollable-container {
+    max-height: 350px;
 }
-*/
+
+.scrollable-content {
+    overflow: auto;
+    max-height: 210px;
+}
