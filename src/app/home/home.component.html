@@ -12,10 +12,11 @@
               aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Admins profile image" src="../../assets/img/theme/team-4-800x800.jpg">
+                  <img alt="Admins profile image"
+                    src="http://localhost:3000/api/v1/user/609adac9306fb0530cde626b/profile-image">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                  <span class="mb-0 text-sm  font-weight-bold">{{currentUser.firstname}} {{currentUser.lastname}}</span>
                 </div>
               </div>
             </a>
@@ -29,7 +30,7 @@
                 <span>My profile</span>
               </a>-->
               <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
+              <a href="/login" class="dropdown-item" (click)="logout()">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { SidebarService } from 'src/app/core/services/sidebar.service';
@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
     constructor(private sidebarService: SidebarService) {
     }
 
+    @ViewChild('navtoggle') myDiv: ElementRef<HTMLElement>;
     ngOnInit() {
 
     }

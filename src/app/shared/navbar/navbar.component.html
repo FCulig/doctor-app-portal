@@ -7,7 +7,7 @@
       </a>
       <div class="ml-auto">
         <!-- Sidenav toggler -->
-        <div id="nav-toggle" [class.active]="isExpanded" class="sidenav-toggler d-none d-xl-block" [attr.data-action]="isExpanded ? 'sidenav-pin' : 'sidenav-unpin'"
+        <div #navtoggle id="nav-toggle" [class.active]="isExpanded" class="sidenav-toggler d-none d-xl-block" [attr.data-action]="isExpanded ? 'sidenav-pin' : 'sidenav-unpin'"
           data-target="#sidenav-main" (click)="expansionClick()">
           <div class="sidenav-toggler-inner">
             <i class="sidenav-toggler-line"></i>
