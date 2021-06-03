@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
 
     private subscribeSidebarExpansions(): void {
         this.sidebarService.sidebarExpansion.subscribe(expansion => {
-            console.log(expansion);
             this.isNavExpanded = expansion;
         });
     }
