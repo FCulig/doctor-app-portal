@@ -12,8 +12,8 @@
               aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Admins profile image"
-                    src="http://localhost:3000/api/v1/user/609adac9306fb0530cde626b/profile-image">
+                  <img *ngIf="currentUser.profileImage" alt="Admins profile image"
+                    src="{{getProfileImageLink(currentUser.id)}}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{currentUser.firstname}} {{currentUser.lastname}}</span>
@@ -218,89 +218,25 @@
           <!-- Card header -->
           <div class="card-header">
             <!-- Title -->
-            <h5 class="h3 mb-0">Team members</h5>
+            <h5 class="h3 mb-0">Admins</h5>
           </div>
           <!-- Card body -->
           <div class="card-body">
             <!-- List group -->
             <ul class="list-group list-group-flush list my--3">
-              <li class="list-group-item px-0">
+              <li class="list-group-item px-0" *ngFor="let admin of admins">
                 <div class="row align-items-center">
                   <div class="col-auto">
                     <!-- Avatar -->
                     <a href="#" class="avatar rounded-circle">
-                      <img alt="Image placeholder" src="././assets/img/theme/team-1-800x800.jpg">
+                      <img *ngIf="admin.profileImage" alt="Administrators image"
+                        src="{{getProfileImageLink(admin.id)}}">
                     </a>
                   </div>
                   <div class="col ml--2">
                     <h4 class="mb-0">
-                      <a href="#!">John Michael</a>
+                      <a href="#">{{admin.firstname}} {{admin.lastname}}</a>
                     </h4>
-                    <span class="text-success">●</span>
-                    <small>Online</small>
-                  </div>
-                  <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-primary">Add</button>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item px-0">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <!-- Avatar -->
-                    <a href="#" class="avatar rounded-circle">
-                      <img alt="Image placeholder" src="../../assets/img/theme/team-2-800x800.jpg">
-                    </a>
-                  </div>
-                  <div class="col ml--2">
-                    <h4 class="mb-0">
-                      <a href="#!">Alex Smith</a>
-                    </h4>
-                    <span class="text-warning">●</span>
-                    <small>In a meeting</small>
-                  </div>
-                  <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-primary">Add</button>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item px-0">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <!-- Avatar -->
-                    <a href="#" class="avatar rounded-circle">
-                      <img alt="Image placeholder" src="../../assets/img/theme/team-3-800x800.jpg">
-                    </a>
-                  </div>
-                  <div class="col ml--2">
-                    <h4 class="mb-0">
-                      <a href="#!">Samantha Ivy</a>
-                    </h4>
-                    <span class="text-danger">●</span>
-                    <small>Offline</small>
-                  </div>
-                  <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-primary">Add</button>
-                  </div>
-                </div>
-              </li>
-              <li class="list-group-item px-0">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <!-- Avatar -->
-                    <a href="#" class="avatar rounded-circle">
-                      <img alt="Image placeholder" src="../../assets/img/theme/team-4-800x800.jpg">
-                    </a>
-                  </div>
-                  <div class="col ml--2">
-                    <h4 class="mb-0">
-                      <a href="#!">John Michael</a>
-                    </h4>
-                    <span class="text-success">●</span>
-                    <small>Online</small>
-                  </div>
-                  <div class="col-auto">
-                    <button type="button" class="btn btn-sm btn-primary">Add</button>
                   </div>
                 </div>
               </li>
@@ -308,53 +244,32 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-5">
+      <div class="col-xl-8">
         <div class="card">
           <div class="card-header">
-            <h5 class="h3 mb-0">Activity feed</h5>
+            <h5 class="h3 mb-0">Issues</h5>
           </div>
           <div class="card-body">
             <!-- Comments -->
-            <div class="mb-1">
+            <div class="mb-1" *ngFor="let issue of issues">
               <div class="media media-comment">
-                <img alt="Image placeholder" class="avatar avatar-lg media-comment-avatar rounded-circle"
-                  src="./assets/img/theme/team-1-800x800.jpg">
+                <img *ngIf="issue.reporter.profileImage" alt="Issue reporter profile image"
+                  class="avatar avatar-lg media-comment-avatar rounded-circle"
+                  src="{{getProfileImageLink(issue.reporter.id)}}">
                 <div class="media-body">
                   <div class="media-comment-text">
-                    <h6 class="h5 mt-0">Michael Lewis</h6>
-                    <p class="text-sm lh-160">Cras sit amet nibh libero nulla vel metus scelerisque ante sollicitudin.
-                      Cras purus odio vestibulum in vulputate viverra turpis.</p>
+                    <h6 class="h5 mt-0">{{issue.reporter.firstname}} {{issue.reporter.lastname}}</h6>
+                    <p class="text-sm lh-160">{{issue.description}}</p>
                     <div class="icon-actions">
-                      <a href="#" class="like active">
+                      <a href="#" class="like" [class.text-info]="issue.isResolved">
                         <i class="ni ni-like-2"></i>
-                        <span class="text-muted">3 likes</span>
+                        <span *ngIf="issue.isResolved" [class.text-info]="!issue.isResolved">Resolved</span>
+                        <span *ngIf="!issue.isResolved" class="text-muted">Resolve</span>
                       </a>
-                      <a href="#">
+                      <a href="#" [class.text-info]="!issue.isResolved">
                         <i class="ni ni-curved-next"></i>
-                        <span class="text-muted">2 shares</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="media media-comment">
-                <img alt="Image placeholder" class="avatar avatar-lg media-comment-avatar rounded-circle"
-                  src="../../assets/img/theme/team-2-800x800.jpg">
-                <div class="media-body">
-                  <div class="media-comment-text">
-                    <h6 class="h5 mt-0">Jessica Stones</h6>
-                    <p class="text-sm lh-160">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                      ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-                    <div class="icon-actions">
-                      <a href="#" class="like active">
-                        <i class="ni ni-like-2"></i>
-                        <span class="text-muted">10 likes</span>
-                      </a>
-                      <a href="#">
-                        <i class="ni ni-curved-next"></i>
-                        <span class="text-muted">1 share</span>
+                        <span [class.text-muted]="issue.isResolved" [class.text-info]="!issue.isResolved">In
+                          progress</span>
                       </a>
                     </div>
                   </div>

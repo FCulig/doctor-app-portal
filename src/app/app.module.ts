@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule, HttpHandler, HTTP_INTERCEPTORS } from '@a
 import { from } from 'rxjs';
 import { AlertComponent } from './shared/alert/alert.component';
 import { HttpTransportInterceptor } from './core/interceptors/http.interceptor';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { HttpTransportInterceptor } from './core/interceptors/http.interceptor';
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: HttpTransportInterceptor, multi: true },
-    JwtHelperService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
