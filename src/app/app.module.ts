@@ -22,6 +22,7 @@ import { from } from 'rxjs';
 import { AlertComponent } from './shared/alert/alert.component';
 import { HttpTransportInterceptor } from './core/interceptors/http.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
     HttpClientModule,
     BrowserModule,
     NgbModule,
+    ChartsModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
