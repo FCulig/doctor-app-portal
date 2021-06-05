@@ -122,14 +122,13 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.currentUser = this.authService.currentUserValue;
         this.getAdmins();
         this.getIssues();
         this.getStats();
     }
 
     public getProfileImageLink(userId: string): string {
-        return environment.basePath + '/user/' + userId + '/profile-image';
+        return this.userService.getProfileImageLink(userId);
     }
 
     public logout(): void {

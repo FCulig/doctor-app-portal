@@ -21,4 +21,8 @@ export class UserService {
         return this.http.post<User[]>(this.baseUrl + ApiPaths.findUsers, findUsersQuery)
             .pipe(map(this.userMapper.mapArrayResponse));
     }
+
+    public getProfileImageLink(userId: string): string {
+        return environment.basePath + '/user/' + userId + '/profile-image';
+    }
 }

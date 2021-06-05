@@ -9,12 +9,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
+import { DoctorVerificationComponent } from './doctor-verification/doctor-verification.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   //{ path: 'user-profile', component: ProfileComponent },
   //{ path: 'register', component: SignupComponent },
-  //{ path: 'landing', component: LandingComponent },
+  { path: 'doctor-verification', component: DoctorVerificationComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '' },

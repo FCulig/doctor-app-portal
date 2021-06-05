@@ -23,6 +23,8 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { HttpTransportInterceptor } from './core/interceptors/http.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ChartsModule } from 'ng2-charts';
+import { DoctorVerificationComponent } from './doctor-verification/doctor-verification.component';
+import { TopNavbarComponent } from './shared/top-navbar/top-navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ChartsModule } from 'ng2-charts';
     LoginComponent,
     AlertsSectionComponent,
     AlertComponent,
+    DoctorVerificationComponent,
+    TopNavbarComponent,
     /*ButtonsSectionComponent,
     InputsSectionComponent,
     CrsSectionComponent,
