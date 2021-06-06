@@ -22,6 +22,15 @@ export class UserService {
             .pipe(map(this.userMapper.mapArrayResponse));
     }
 
+    public verifyDoctor(userId): Observable<any> {
+        return this.http.put<null>(this.baseUrl + ApiPaths.userDoctor + '/' + userId + '/confirm', null)
+            .pipe(map(this.userMapper.mapUserResponseToUser));
+    }
+
+    public deleteUser(userId): Observable<any> {
+        return this.http.delete(this.baseUrl + ApiPaths.users + '/' + userId);
+    }
+
     public getProfileImageLink(userId: string): string {
         return environment.basePath + '/user/' + userId + '/profile-image';
     }

@@ -2,6 +2,8 @@ export interface User {
     id: string,
     token?: string,
     phone: string,
+    speciality?: string,
+    address?: string,
     licenseNumber?: number,
     lastname?: string,
     firstname?: string,

@@ -2,7 +2,7 @@
 <app-navbar [class.hidden]="!isNavVisible"></app-navbar>
 <div [class.nav-not-expanded]="!isNavExpanded && isNavVisible" [class.nav-expanded]="isNavExpanded && isNavVisible">
     <div class="main-content" id="panel">
-        <app-top-navbar></app-top-navbar>
+        <app-top-navbar [class.hidden]="!isNavVisible"></app-top-navbar>
         <router-outlet></router-outlet>
     </div>
 </div>

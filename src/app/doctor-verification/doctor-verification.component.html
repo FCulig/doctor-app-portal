@@ -9,108 +9,44 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Default</li>
+                            <li class="breadcrumb-item active" aria-current="page">Doctor verification</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <!-- Card stats -->
-            <div class="row" *ngIf="stats">
-                <div class="col-xl-3 col-md-6">
+            <div class="row" *ngIf="pendingVerification">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <!-- Card body -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Patients</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{stats.registeredPatients.total}}</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Doctors pending verification
+                                    </h5>
+                                    <span class="h2 font-weight-bold mb-0">{{pendingVerification.length}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
+                                        <i class="fas fa-hourglass-half"></i>
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="mr-2" [class.text-success]="stats.registeredPatients.percentage > 0"
-                                    [class.text-danger]="stats.registeredPatients.percentage < 0">
-                                    <i *ngIf="stats.registeredPatients.percentage > 0" class="fa fa-arrow-up"></i>
-                                    <i *ngIf="stats.registeredPatients.percentage < 0"
-                                        class="fa fa-arrow-down"></i>{{stats.registeredPatients.percentage == null ? 0 :
-                                    stats.registeredPatients.percentage}}%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-6">
                     <div class="card card-stats">
                         <!-- Card body -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Doctors</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{stats.registeredDoctors.total}}</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                                        <i class="ni ni-chart-pie-35"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="mr-2" [class.text-success]="stats.registeredDoctors.percentage > 0"
-                                    [class.text-danger]="stats.registeredDoctors.percentage < 0">
-                                    <i *ngIf="stats.registeredDoctors.percentage > 0" class="fa fa-arrow-up"></i>
-                                    <i *ngIf="stats.registeredDoctors.percentage < 0"
-                                        class="fa fa-arrow-down"></i>{{stats.registeredDoctors.percentage == null ? 0 :
-                                    stats.registeredDoctors.percentage}}%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-stats">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Revenue</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{stats.revenue.total}}</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                        <i class="ni ni-money-coins"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="mr-2" [class.text-success]="stats.revenue.percentage > 0"
-                                    [class.text-danger]="stats.revenue.percentage < 0">
-                                    <i *ngIf="stats.revenue.percentage > 0" class="fa fa-arrow-up"></i>
-                                    <i *ngIf="stats.revenue.percentage < 0"
-                                        class="fa fa-arrow-down"></i>{{stats.revenue.percentage ==
-                                    null ? 0 :
-                                    stats.revenue.percentage}}%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-stats">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Payouts</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{stats.revenue.percentage == null ? 0 :
-                                        stats.revenue.percentage}}%</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Doctors verified</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{totalDoctors}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                                        <i class="ni ni-chart-bar-32"></i>
+                                        <i class="fas fa-check"></i>
                                     </div>
                                 </div>
                             </div>
@@ -123,122 +59,53 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--6">
-    <div class="row" *ngIf="stats">
-        <div class="col-xl-7">
-            <div class="card bg-default">
-                <div class="card-header bg-transparent">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                            <h5 class="h3 text-white mb-0">Total users registered</h5>
-                        </div>
-                        <div class="col">
-                            <ul class="nav nav-pills justify-content-end">
-                                <li class="nav-item mr-2 mr-md-0">
-                                    <a [routerLink]="" class="nav-link py-2 px-3 active"
-                                        (click)="setupRegisteredUsersGraph(stats.graphTotalUsersMonth)">
-                                        <span class="d-none d-md-block">Month</span>
-                                        <span class="d-md-none">M</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a [routerLink]="" class="nav-link py-2 px-3"
-                                        (click)="setupRegisteredUsersGraph(stats.graphTotalUsersWeek)">
-                                        <span class="d-none d-md-block">Week</span>
-                                        <span class="d-md-none">W</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-                        [colors]="lineChartColors" [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-5">
-            <div class="card">
-                <div class="card-header bg-transparent">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                            <h5 class="h3 mb-0">Total appointments</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <canvas baseChart [datasets]="barChartData" [colors]="barChartColors" [labels]="barChartLabels"
-                        [options]="barChartOptions" [chartType]="barChartType">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
-        <div class="col-xl-4 scrollable-container">
-            <!-- Members list group card -->
-            <div class="card">
-                <!-- Card header -->
-                <div class="card-header">
-                    <!-- Title -->
-                    <h5 class="h3 mb-0">Admins</h5>
-                </div>
-                <!-- Card body -->
-                <div class="card-body scrollable-content">
-                    <!-- List group -->
-                    <ul class="list-group list-group-flush list my--3">
-                        <li class="list-group-item px-0" *ngFor="let admin of admins">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                    <!-- Avatar -->
-                                    <a href="#" class="avatar rounded-circle">
-                                        <img *ngIf="admin.profileImage" alt="Administrators image"
-                                            src="{{getProfileImageLink(admin.id)}}">
-                                    </a>
-                                </div>
-                                <div class="col ml--2">
-                                    <h4 class="mb-0">
-                                        <a href="#">{{admin.firstname}} {{admin.lastname}}</a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-8 scrollable-container">
+        <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="h3 mb-0">Issues</h5>
+                    <h5 class="h3 mb-0">Doctors pending verification</h5>
                 </div>
-                <div class="card-body scrollable-content">
+                <div class="card-body" *ngIf="pendingVerification">
                     <!-- Comments -->
-                    <div class="mb-1" *ngFor="let issue of issues">
-                        <div class="media media-comment">
-                            <img *ngIf="issue.reporter.profileImage" alt="Issue reporter profile image"
+                    <div class="mb-1" *ngFor="let doctor of pendingVerification">
+                        <div class="media media-comment" *ngIf="doctor">
+                            <img *ngIf="doctor.profileImage" alt="Issue reporter profile image"
                                 class="avatar avatar-lg media-comment-avatar rounded-circle"
-                                src="{{getProfileImageLink(issue.reporter.id)}}">
+                                src="{{getProfileImageLink(doctor.id)}}">
                             <div class="media-body">
                                 <div class="media-comment-text">
-                                    <h6 class="h5 mt-0">{{issue.reporter.firstname}} {{issue.reporter.lastname}}</h6>
-                                    <p class="text-sm lh-160">{{issue.description}}</p>
-                                    <div class="icon-actions">
-                                        <a [routerLink]="" class="like" [class.text-info]="issue.isResolved"
-                                            (click)="updateIssueStatus(issue.id, true)">
-                                            <i class="ni ni-like-2"></i>
-                                            <span *ngIf="issue.isResolved" class="text-info">Resolved</span>
-                                            <span *ngIf="!issue.isResolved" class="text-muted">Resolve</span>
+                                    <h6 class="h5 mt-0">{{doctor.firstname}} {{doctor.lastname}}, <p
+                                            class="text-sm display-inline">{{doctor.speciality}}</p>
+                                    </h6>
+                                    <h6 class="h3 mt-0">Doctor information:</h6>
+                                    <ul>
+                                        <li>License number: {{doctor.licenseNumber}}</li>
+                                        <li>Date of graduation: {{doctor.dateOfGraduation | date}}</li>
+                                    </ul>
+                                    <hr>
+                                    <h6 class="h3 mt-0">Personal information:</h6>
+                                    <ul>
+                                        <li>{{doctor.email}}, phone: {{doctor.phone}}</li>
+                                        <li>{{doctor.address}}, {{doctor.city}}</li>
+                                        <li>Date of graduation: {{doctor.dateOfBirth | date}}</li>
+                                    </ul>
+                                    <hr *ngIf="doctor.attachments.length > 0">
+                                    <div *ngFor="let attachment of doctor.attachments">
+                                        <a class="attachment" [routerLink]=""
+                                            (click)="downloadFile(doctor.id, attachment)">
+                                            <i class="far fa-file text-muted"></i>
+                                            <span class="text-muted"> {{attachment}}</span>
                                         </a>
-                                        <a [routerLink]="" [class.text-info]="!issue.isResolved"
-                                            (click)="updateIssueStatus(issue.id, false)">
-                                            <i class="ni ni-curved-next"></i>
-                                            <span [class.text-muted]="issue.isResolved"
-                                                [class.text-info]="!issue.isResolved">In
-                                                progress</span>
+                                    </div>
+                                    <hr>
+                                    <div class="icon-actions">
+                                        <a [routerLink]="" class="like" (click)="verifyDoctor(doctor.id)">
+                                            <i class="ni ni-like-2 text-muted"></i>
+                                            <span class="text-muted">Accept</span>
+                                        </a>
+                                        <a [routerLink]="" (click)="deleteDoctor(doctor.id)">
+                                            <i class="fas fa-times text-muted"></i>
+                                            <span class="text-muted">Delete</span>
                                         </a>
                                     </div>
                                 </div>
