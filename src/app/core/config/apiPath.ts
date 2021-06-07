@@ -4,6 +4,9 @@ export enum ApiPaths {
     findUsers = '/user/find',
     userDoctor = '/user/doctor',
     attachment = '/attachment',
+    appointment = '/appointment',
+    appointmentPayment = '/payment/appointment',
     issue = '/issue',
+    payments = '/payment',
     stats = '/stats'
 }

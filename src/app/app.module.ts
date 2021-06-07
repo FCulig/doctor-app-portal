@@ -25,6 +25,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ChartsModule } from 'ng2-charts';
 import { DoctorVerificationComponent } from './doctor-verification/doctor-verification.component';
 import { TopNavbarComponent } from './shared/top-navbar/top-navbar.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { TopNavbarComponent } from './shared/top-navbar/top-navbar.component';
     AlertComponent,
     DoctorVerificationComponent,
     TopNavbarComponent,
+    PaymentsComponent,
     /*ButtonsSectionComponent,
     InputsSectionComponent,
     CrsSectionComponent,
